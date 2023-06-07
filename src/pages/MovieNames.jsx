@@ -1,71 +1,66 @@
-import React, { useEffect, useState } from 'react'
-import { movieData } from '../services/movie-service'
-import { Button, Card, CardBody, CardGroup, CardImg, CardSubtitle, CardText, CardTitle, ListGroup, ListGroupItem, ListGroupItemHeading } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { movieData } from "../services/movie-service";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
-
-function MovieNames({children}) {
-  const [movies,setMovies]=useState([])
-  useEffect(()=>{
-    movieData().then(data=>{
-      setMovies([...data]);
-      console.log(data);
-      console.log(data[0]);
-    }).catch(error=>{
-      console.log(error);
-    })
-  },[])
+function MovieNames({ children }) {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    movieData()
+      .then((data) => {
+        setMovies([...data]);
+        console.log(data);
+        console.log(data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
-    
-    <div>
-      
-      <h1>All Movies :</h1>
-      
-      {/*<ListGroup>
-          {movies && movies.map((mov,index) => {
+    <div className="container-fluid bg-gradient bg-primary">
+      <h1>Movies in Cinema :</h1>
+      <div className="row">
+      {movies &&
+          movies.map((mov, index) => {
             return (
-                <ListGroupItem key={index} action={true} tag={Link} to={'/summary/'+ mov.show.id}>
-                   <ListGroupItemHeading>
-                      {mov.show.name}
-                   </ListGroupItemHeading>
-                </ListGroupItem>
-            )
-        })}
-      </ListGroup>*/}
+              <div className="col-sm-2">
+                  <Card className="mx-2 my-3 border-2 border-dark shadow rounded-5">
+                    <CardImg
+                      alt="Movie image"
+                      src={mov.show.image.medium}
+                      className="rounded-top-5 shadow"
+                     
+                    />
+                    <CardBody>
+                      <CardTitle tag="h5">{mov.show.name}</CardTitle>
+                      <CardSubtitle className="mb-2 text-muted" tag="h6">
+                        {mov.show.language}
+                      </CardSubtitle>
+                      <CardText
+                        dangerouslySetInnerHTML={{
+                          __html: mov.show.summary.substring(0, 50) + "...",
+                        }}
+                      ></CardText>
+                      <Button tag={Link} to={"/summary/" + index} >
+                        Know More
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </div>
+            );
+          })}
 
-        <CardGroup>
-        
-        {movies && movies.map((mov,index) => {
-           return (
-  <Card>
-    <CardImg
-      alt="Movie image"
-      src={mov.show.image.medium}
-      top
-      width="50%"
-    />
-    <CardBody>
-      <CardTitle tag="h5">
-      {mov.show.name}
-      </CardTitle>
-      <CardSubtitle
-        className="mb-2 text-muted"
-        tag="h6"
-      >
-        {mov.show.language}
-      </CardSubtitle>
-      <CardText dangerouslySetInnerHTML={{__html:mov.show.summary.substring(0,50) + "..."}}>
-      </CardText>
-      <Button tag={Link} to={'/summary/'+ index}>
-        Know More
-      </Button>
-    </CardBody>
-  </Card>
-   )
-  })}
-  </CardGroup>
+      </div>
     </div>
-  )
+  );
 }
 
-export default MovieNames
+export default MovieNames;

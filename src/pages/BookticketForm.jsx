@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { Link } from 'react-router-dom'
 import {
   Button,
   Card,
@@ -12,7 +13,6 @@ import {
   Input,
   Label,
   Row,
-  Toast,
 } from "reactstrap";
 
 function BookticketForm(props) {
@@ -67,9 +67,8 @@ function BookticketForm(props) {
 
   return (
     <div>
-      <h5>{props.passing?.time}</h5>
-      <h6>{props.passing?.days[0]}</h6>
-      <Button onClick={toggleForm} id="btn">Book a Ticket Here!</Button>
+      <Button onClick={toggleForm} style={{ backgroundColor: "lime", color: "black", fontSize: 20, fontWeight: "bold"}}>Book a Ticket Here!</Button>
+      <Button className="mx-5" tag={Link} to="/" style={{ backgroundColor: "fuchsia", color: "black", fontSize: 20, fontWeight: "bold"}}>Check other Movies</Button>
       {showForm && (
         <Container className="my-3">
           <Card style={{ border: "3px solid black" }}>
