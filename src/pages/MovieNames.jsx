@@ -31,11 +31,11 @@ function MovieNames({ children }) {
       {movies &&
           movies.map((mov, index) => {
             return (
-              <div className="col-sm-2">
+              <div className=" col-lg-2 col-sm-3 col-md-4">
                   <Card className="mx-2 my-3 border-2 border-dark shadow rounded-5">
                     <CardImg
                       alt="Movie image"
-                      src={mov.show.image.medium}
+                      src={mov.show.image?.medium}
                       className="rounded-top-5 shadow"
                      
                     />
