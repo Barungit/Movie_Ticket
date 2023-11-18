@@ -35,7 +35,7 @@ function MovieNames({ children }) {
                   <Card className="mx-2 my-3 border-2 border-dark shadow rounded-5">
                     <CardImg
                       alt="Movie image"
-                      src={mov.show.image.medium}
+                      src={mov.show.image?.medium}
                       className="rounded-top-5 shadow"
                      
                     />
