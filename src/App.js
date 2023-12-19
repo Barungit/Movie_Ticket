@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
     <ToastContainer position='top-center' />
       <Routes>
-        <Route path="/" element={<MovieNames />}/>
+        <Route path="/Movie_Ticket/" element={<MovieNames />}/>
         <Route path="/summary/:id" element={<MovieSummary />} />
       </Routes>
     </BrowserRouter>
